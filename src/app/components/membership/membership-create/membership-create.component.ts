@@ -15,8 +15,9 @@ export class MembershipCreateComponent {
   form: FormGroup
   errorMessage = ''
 
-  @Output() onCancel = new EventEmitter<any>()
-  @Output() okCreate = new EventEmitter<any>()
+  @Output() onCancel = new EventEmitter<string>()
+  @Output() okCreate = new EventEmitter<string>()
+  @Output() errorCreate = new EventEmitter<string>()
  
 
   constructor(
@@ -35,8 +36,8 @@ export class MembershipCreateComponent {
     if (this.form.invalid) return
 
     this.membershipService.create(this.form.value).subscribe({
-      next: () => this.handleCreate(),
-      error: err => (this.errorMessage = err.message || 'Error creando membresía')
+      next: () => this.handleCreate('Membresía creada con éxito'),
+      error: () => this.handleError('Error creando membresía')
     })
   }
 
@@ -44,8 +45,12 @@ export class MembershipCreateComponent {
     this.onCancel.emit()
   }
 
-  handleCreate() {
-    this.okCreate.emit('Membresía creada con éxito')
+  handleCreate(message: string ) {
+    this.okCreate.emit(message)
+  }
+
+  handleError(message: string) {
+    this.errorCreate.emit(message)
   }
 
 }

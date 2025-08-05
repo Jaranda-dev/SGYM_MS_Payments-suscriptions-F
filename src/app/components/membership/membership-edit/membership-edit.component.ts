@@ -39,8 +39,8 @@ export class MembershipEditComponent {
     if (this.form.invalid) return
 
     this.membershipService.update(this.membership.id, this.form.value).subscribe({
-      next: () => this.handleEdit(),
-      error: err => (this.errorMessage = err.message || 'Error editando membresía')
+      next: () => this.handleEdit('Membresía editada con éxito'),
+      error: () => this.handleEdit('Error editando membresía')
     })
   }
 
@@ -48,8 +48,8 @@ export class MembershipEditComponent {
     this.onCancel.emit()
   }
 
-  handleEdit() {
-    this.okEdit.emit('Membresía editada con éxito')
+  handleEdit(message: string) {
+    this.okEdit.emit(message)
   }
 
   ngOnChanges() {

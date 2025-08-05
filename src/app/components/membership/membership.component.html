@@ -1,6 +1,6 @@
 <h1>Membresías</h1>
 
-<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
 
 <app-data-table
   [headers]="headers"
@@ -14,12 +14,20 @@
 <!-- Overlay modal -->
 <div *ngIf="showCreate" class="modal-overlay">
   <div class="modal-container">
-    <app-membership-create (okCreate)="loadMemberships()" (onCancel)="closeCreate()"></app-membership-create>
+    <app-membership-create (okCreate)="okCreate($event)" (errorCreate)="onFailure($event)" (onCancel)="closeCreate()"></app-membership-create>
   </div>
 </div>
 
 <div *ngIf="showEdit" class="modal-overlay">
   <div class="modal-container">
-    <app-membership-edit *ngIf="selectedMembership" [membership]="selectedMembership" (okEdit)="loadMemberships()" (onCancel)="closeEdit()"></app-membership-edit>
+    <app-membership-edit *ngIf="selectedMembership" [membership]="selectedMembership" (okEdit)="okEdit($event)" (onCancel)="closeEdit()"></app-membership-edit>
   </div>
+</div>
+
+<div *ngIf="errorMessage">
+  <app-message-toast [message]="errorMessage" [type]="'error'"></app-message-toast>
+</div>
+
+<div *ngIf="successMessage">
+  <app-message-toast [message]="successMessage" [type]="'success'"></app-message-toast>
 </div>
