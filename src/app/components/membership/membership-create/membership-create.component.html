@@ -1,0 +1,38 @@
+<div class="modal-form">
+  <h2>Crear Membresía</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input id="name" formControlName="name" type="text" placeholder="Nombre" />
+      <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="error">
+        Nombre requerido y máximo 50 caracteres
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="durationDays">Duración (días)</label>
+      <input id="durationDays" formControlName="durationDays" type="number" placeholder="Duración (días)" />
+      <div *ngIf="form.get('durationDays')?.invalid && form.get('durationDays')?.touched" class="error">
+        Duración mínima 1 día
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Precio</label>
+      <input id="price" formControlName="price" type="number" step="0.01" placeholder="Precio" />
+      <div *ngIf="form.get('price')?.invalid && form.get('price')?.touched" class="error">
+        Precio mínimo 0
+      </div>
+    </div>
+
+    <div class="form-buttons">
+      <button type="button" class="btn-cancel" (click)="handleCancel()">Cancelar</button>
+      <button type="submit" class="btn-submit" [disabled]="form.invalid">Crear</button>
+    </div>
+  </form>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+</div>

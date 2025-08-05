@@ -1,0 +1,12 @@
+<div class="membership-card">
+  <h2>{{ membership.name }}</h2>
+  <p>Duración: {{ membership.durationDays }} días</p>
+  <p>Precio: ${{ membership.price }}</p>
+
+  <div class="button-group">
+    <button class="main-button" (click)="handleSelect()">{{ buttonText }}</button>
+    <button class="edit-button" (click)="handleEdit()">Modificar</button>
+    <button class="delete-button" (click)="handleDelete()">Eliminar</button>
+  </div>
+</div>
+
