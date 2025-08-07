@@ -28,11 +28,12 @@ export class PaymentCreateComponent {
     private router: Router
   ) {
     this.form = this.fb.group({
-      userId: [0, [Validators.required]],
-      paymentRequestId: [0, [Validators.required]],
-      paymentMethodId: [0, [Validators.required]],
-      amount: [0, [Validators.required, Validators.min(0)]],
-      status: ['success', [Validators.required]]
+      paymentRequestId: ['', Validators.required],
+      subscriptionId: ['', Validators.required],
+      amount: ['', [Validators.required, Validators.min(0)]],
+      paymentDate: ['', Validators.required],
+      concept: [''],
+      status: ['', Validators.required]
     })
   }
    

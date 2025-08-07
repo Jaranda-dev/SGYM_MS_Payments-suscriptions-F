@@ -1,41 +1,49 @@
-
-
 <div class="modal-form">
   <h2>Hacer Pago</h2>
 
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="form-group">
-      <label for="userId">userId</label>
-      <input id="userId" formControlName="userId" type="text" placeholder="userId" value="{{ form.get('userId')?.value }}" />
-      <div *ngIf="form.get('userId')?.invalid && form.get('userId')?.touched" class="error">
-        userId requerido
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="paymentRequestId">paymentRequestId</label>
-      <input id="paymentRequestId" formControlName="paymentRequestId" type="text" placeholder="paymentRequestId" value="{{ form.get('paymentRequestId')?.value }}" />
+      <label for="paymentRequestId">Payment Request ID</label>
+      <input id="paymentRequestId" formControlName="paymentRequestId" type="text" placeholder="Payment Request ID" value="{{ form.get('paymentRequestId')?.value }}" />
       <div *ngIf="form.get('paymentRequestId')?.invalid && form.get('paymentRequestId')?.touched" class="error">
-        paymentRequestId requerido
+        Payment Request ID requerido
       </div>
     </div>
-
     <div class="form-group">
-      <label for="paymentMethodId">paymentMethodId</label>
-      <input id="paymentMethodId" formControlName="paymentMethodId" type="text" placeholder="paymentMethodId" value="{{ form.get('paymentMethodId')?.value }}" />
-      <div *ngIf="form.get('paymentMethodId')?.invalid && form.get('paymentMethodId')?.touched" class="error">
-        paymentMethodId requerido
+      <label for="subscriptionId">Subscription ID</label>
+      <input id="subscriptionId" formControlName="subscriptionId" type="text" placeholder="Subscription ID" value="{{ form.get('subscriptionId')?.value }}" />
+      <div *ngIf="form.get('subscriptionId')?.invalid && form.get('subscriptionId')?.touched" class="error">
+        Subscription ID requerido
       </div>
     </div>
-
     <div class="form-group">
-      <label for="amount">amount</label>
-      <input id="amount" formControlName="amount" type="number" placeholder="amount" value="{{ form.get('amount')?.value }}"  />
+      <label for="amount">Amount</label>
+      <input id="amount" formControlName="amount" type="number" placeholder="Amount" value="{{ form.get('amount')?.value }}" />
       <div *ngIf="form.get('amount')?.invalid && form.get('amount')?.touched" class="error">
-        amount requerido
+        Amount requerido y debe ser mayor o igual a 0
       </div>
     </div>
-
+    <div class="form-group">
+      <label for="paymentDate">Payment Date</label>
+      <input id="paymentDate" formControlName="paymentDate" type="date" placeholder="Payment Date" value="{{ form.get('paymentDate')?.value }}" />
+      <div *ngIf="form.get('paymentDate')?.invalid && form.get('paymentDate')?.touched" class="error">
+        Payment Date requerido
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="concept">Concept</label>
+      <input id="concept" formControlName="concept" type="text" placeholder="Concept" value="{{ form.get('concept')?.value }}" />
+      <div *ngIf="form.get('concept')?.invalid && form.get('concept')?.touched" class="error">
+        Concepto requerido
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="createdAt">Created At</label>
+      <input id="createdAt" formControlName="createdAt" type="text" placeholder="Created At" value="{{ form.get('createdAt')?.value }}" />
+      <div *ngIf="form.get('createdAt')?.invalid && form.get('createdAt')?.touched" class="error">
+        Created At requerido
+      </div>
+    </div>
     <div class="form-group">
       <label for="status">status</label>
       <input id="status" formControlName="status" type="text" placeholder="status" value="{{ form.get('status')?.value }}" />
@@ -50,7 +58,6 @@
   </form>
 
    
-
   <div *ngIf="errorMessage" class="error">
     {{ errorMessage }}
   </div>

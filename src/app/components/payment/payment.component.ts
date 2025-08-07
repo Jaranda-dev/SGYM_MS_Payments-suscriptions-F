@@ -11,6 +11,7 @@ import { MessageToastComponent } from '../resources/message-toast/message-toast.
 import { MessageCardComponent } from '../resources/message-card/message-card.component'
 
 
+
 @Component({
   selector: 'app-payment',
   imports: [CommonModule, ReactiveFormsModule, DataTableComponent, PaymentCreateComponent, PaymentEditComponent, MessageToastComponent, MessageCardComponent],
@@ -19,8 +20,9 @@ import { MessageCardComponent } from '../resources/message-card/message-card.com
 })
 export class PaymentComponent implements OnInit {
   payments: Payment[] = []
-  headers = ['Fecha', 'Monto', 'Método de Pago']
-  keys = ['date', 'amount', 'paymentMethod']
+
+  headers = ['ID', 'Payment Request ID', 'Subscription ID', 'Amount', 'Payment Date', 'Concept', 'Status', 'Created At']
+  keys = ['id', 'paymentRequestId', 'subscriptionId', 'amount', 'paymentDate', 'concept', 'status', 'createdAt']
   errorMessage = ''
   showCreate = false
   showEdit = false

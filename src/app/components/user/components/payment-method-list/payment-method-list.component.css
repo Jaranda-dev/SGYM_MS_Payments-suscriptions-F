@@ -1,0 +1,328 @@
+/* === Contenedor principal === */
+.payment-history-wrapper {
+  background-color: #f3f2ff;
+  border: 0.15vw solid #7a5af8;
+  border-radius: 0.7vw;
+  overflow-y: auto;
+  margin-top: 1rem;
+  height: 60vh;
+  padding: 1rem;
+}
+
+.history-header {
+  position: sticky;
+  top: 0;
+  background-color: #f3f2ff;
+  color: #673ab7;
+  font-weight: bold;
+  padding: 1.4vh 1vw;
+  border-bottom: 0.1vh solid #9c27b0;
+  z-index: 10;
+  margin: -1rem -1rem 1rem -1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(2px);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  color: #673ab7;
+}
+
+/* === Lista de métodos de pago === */
+.payment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* === Tarjeta de método de pago === */
+.payment-card {
+  background-color: white;
+  border: 0.1vh solid #9c27b0;
+  border-radius: 0.5vw;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 0.2vh 0.4vh rgba(0, 0, 0, 0.1);
+}
+
+.payment-card:hover {
+  background-color: #f8f5ff;
+  transform: translateY(-0.1vh);
+  box-shadow: 0 0.4vh 0.8vh rgba(119, 16, 212, 0.1);
+}
+
+/* === Header de la tarjeta === */
+.payment-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.05vh solid #e0e0e0;
+}
+
+.payment-id {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #673ab7;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* === Estados específicos para métodos de pago === */
+.status-default {
+  background-color: #e8f5e8;
+  color: #2e7d32;
+  padding: 0.4vh 0.8vw;
+  border-radius: 1vw;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-secondary {
+  background-color: #f0f0f0;
+  color: #666;
+  padding: 0.4vh 0.8vw;
+  border-radius: 1vw;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* === Contenido de la tarjeta === */
+.payment-card-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.payment-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-label {
+  font-size: 0.875rem;
+  color: #5a5a5a;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.detail-value {
+  font-size: 1rem;
+  color: #333;
+  font-weight: normal;
+}
+
+/* === Estilos específicos para datos de tarjeta === */
+.card-brand {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #7710d4;
+  text-transform: capitalize;
+}
+
+.card-number {
+  font-family: 'Courier New', monospace;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.expiry-date {
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  color: #666;
+}
+
+/* === Acciones de la tarjeta === */
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  border-top: 0.05vh solid #e0e0e0;
+}
+
+.action-btn {
+  border: none;
+  border-radius: 0.4vw;
+  padding: 0.6vh 1vw;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.set-default {
+  background-color: #7710d4;
+  color: white;
+}
+
+.set-default:hover {
+  background-color: #5a0ca0;
+  transform: translateY(-0.1vh);
+}
+
+.edit-method {
+  background-color: transparent;
+  color: #7710d4;
+  border: 0.1vh solid #7710d4;
+}
+
+.edit-method:hover {
+  background-color: #f2f2fe;
+  transform: translateY(-0.1vh);
+}
+
+.delete-method {
+  background-color: transparent;
+  color: #d32f2f;
+  border: 0.1vh solid #d32f2f;
+}
+
+.delete-method:hover {
+  background-color: #ffebee;
+  transform: translateY(-0.1vh);
+}
+
+/* === Estado vacío === */
+.empty-state {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: #666;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  color: #9c27b0;
+  margin-bottom: 1rem;
+}
+
+.add-method-btn {
+  background-color: #7710d4;
+  color: white;
+  border: none;
+  padding: 0.8vh 1.5vw;
+  border-radius: 0.4vw;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0.3vh 0.8vh rgba(119, 16, 212, 0.3);
+}
+
+.add-method-btn:hover {
+  background-color: #5a0ca0;
+  transform: translateY(-0.1vh);
+  box-shadow: 0 0.4vh 1.2vh rgba(90, 12, 160, 0.4);
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .payment-history-wrapper {
+    height: 50vh;
+    padding: 0.5rem;
+  }
+  
+  .payment-card {
+    padding: 1rem;
+  }
+  
+  .payment-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .payment-card-content {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .card-actions {
+    justify-content: center;
+    gap: 0.3rem;
+  }
+  
+  .action-btn {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .header-content {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .header-title {
+    font-size: 1.3rem;
+  }
+  
+  .btn-create {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .history-header {
+    padding: 1vh 0.5vw;
+  }
+  
+  .header-title {
+    font-size: 1.2rem;
+  }
+  
+  .btn-create {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .payment-history-wrapper {
+    height: 45vh;
+    padding: 0.4rem;
+  }
+
+  .history-header {
+    font-size: 1rem;
+    padding: 0.75vh 0.5vw;
+  }
+
+  .payment-card {
+    padding: 0.6rem;
+  }
+
+  .payment-card-content {
+    gap: 0.5rem;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro semitransparente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Asegura que quede encima */
+}
+

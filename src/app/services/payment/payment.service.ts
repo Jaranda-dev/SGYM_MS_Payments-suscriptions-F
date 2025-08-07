@@ -68,5 +68,17 @@ export class PaymentService {
       })
     );
   }
+
+  getByUser(): Observable<Payment[]> {
+    return this.http.get<ApiResponse<Payment[]>>(`${this.baseUrl}/user/payments`).pipe(
+      map(response => {
+        if (response.status === 'success') {
+          return response.data;
+        } else {
+          throw new Error(response.msg);
+        }
+      })
+    );
+  }
   
 }

@@ -1,0 +1,83 @@
+<div class="payment-history-wrapper">
+  <div class="history-header">
+    <div class="header-content">
+      <span class="header-title">Suscripciones</span>
+      <!-- Botón crear cuando hay elementos -->
+      <button class="btn-create" 
+              *ngIf="subscriptions && subscriptions.length > 0"
+              (click)="handleSubscriptionAction()">
+        <span class="plus-icon">{{ hasActiveSubscription() ? '🔄' : '+' }}</span>
+        {{ hasActiveSubscription() ? 'Cambiar Suscripción' : 'Suscribirse' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="payment-list" *ngIf="subscriptions && subscriptions.length > 0">
+    <div class="payment-card" *ngFor="let subscription of subscriptions">
+      <div class="payment-card-header">
+        <h3 class="payment-id">{{ subscription.membership!.name }}</h3>
+        <span class="payment-status" 
+              [ngClass]="{
+                'status-active': subscription.status === 'active',
+                'status-expired': subscription.status === 'expired',
+                'status-cancelled': subscription.status === 'cancelled'
+              }">
+          {{ getStatusText(subscription.status) }}
+        </span>
+      </div>
+      
+      <div class="payment-card-content">
+        <div class="payment-detail">
+          <span class="detail-label">Membresía</span>
+          <span class="detail-value membership-name">{{ subscription.membership!.name }}</span>
+        </div>
+        
+        <div class="payment-detail">
+          <span class="detail-label">Precio</span>
+          <span class="detail-value amount-value">${{ subscription.membership!.price }}</span>
+        </div>
+        
+        <div class="payment-detail">
+          <span class="detail-label">Duración</span>
+          <span class="detail-value">{{ subscription.membership!.durationDays }} días</span>
+        </div>
+        
+        <div class="payment-detail">
+          <span class="detail-label">Fecha de Inicio</span>
+          <span class="detail-value">{{ subscription.startDate | date:'dd/MM/yyyy' }}</span>
+        </div>
+        
+        <div class="payment-detail">
+          <span class="detail-label">Fecha de Fin</span>
+          <span class="detail-value">{{ subscription.endDate | date:'dd/MM/yyyy' }}</span>
+        </div>
+        
+        
+      </div>
+
+      <!-- Solo mostrar información, sin acciones -->
+      <div class="card-info" *ngIf="subscription.status === 'active'">
+        <div class="info-badge">
+          ✅ Suscripción activa hasta {{ subscription.endDate | date:'dd/MM/yyyy' }}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Estado vacío - botón interno cuando no hay elementos -->
+  <div class="empty-state" *ngIf="!subscriptions || subscriptions.length === 0">
+    <div class="empty-icon">📋</div>
+    <p>No tienes suscripciones registradas</p>
+    <button class="add-method-btn" (click)="handleSubscriptionAction()">
+      Suscribirse ahora
+    </button>
+  </div>
+</div>
+
+<div *ngIf="errorMessage">
+  <app-message-toast [message]="errorMessage" [type]="'error'"></app-message-toast>
+</div>
+
+<div *ngIf="successMessage">
+  <app-message-toast [message]="successMessage" [type]="'success'"></app-message-toast>
+</div>

@@ -1,0 +1,50 @@
+<div class="payment-form">
+  <h2>Agregar Método de Pago</h2>
+  
+  <div class="card-element-container">
+    <label for="card-element">Información de la tarjeta</label>
+    <div #cardElement id="card-element" class="card-element">
+      <!-- Stripe Elements se montará aquí -->
+    </div>
+  </div>
+
+ 
+
+  <div class="form-actions">
+    <button 
+      type="button" 
+      (click)="clearCard()" 
+      class="btn-secondary"
+      [disabled]="loading">
+      Limpiar
+    </button>
+     <button 
+      type="button" 
+      (click)="close()" 
+      class="btn-close"
+      [disabled]="loading">
+      Cerrar
+      
+    </button>
+    
+    <button 
+      type="button" 
+      (click)="addPaymentMethod()" 
+      class="btn-primary"
+      [disabled]="loading">
+      <span *ngIf="loading">Procesando...</span>
+      <span *ngIf="!loading">Agregar Método de Pago</span>
+    </button>
+
+    
+
+  </div>
+</div>
+
+<div *ngIf="errorMessage">
+  <app-message-toast [message]="errorMessage" [type]="'error'"></app-message-toast>
+</div>
+
+<div *ngIf="successMessage">
+  <app-message-toast [message]="successMessage" [type]="'success'"></app-message-toast>
+</div>

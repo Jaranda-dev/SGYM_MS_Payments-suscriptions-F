@@ -1,0 +1,93 @@
+
+<div class="payment-history-wrapper">
+    
+  <div class="history-header">
+    
+    <div class="header-content">
+      <span class="header-title">Métodos de Pago</span>
+      <!-- Botón crear cuando hay elementos -->
+      
+    </div>
+  </div>
+
+  <div class="payment-list" *ngIf="userPaymentMethod && userPaymentMethod.length > 0">
+    <div class="payment-card" *ngFor="let method of userPaymentMethod">
+      <div class="payment-card-header">
+        <h3 class="payment-id">{{ method.brand | titlecase }} •••• {{ method.last4 }}</h3>
+        <span class="payment-status" 
+              [ngClass]="{
+                'status-default': method.isDefault,
+                'status-secondary': !method.isDefault
+              }">
+          {{ method.isDefault ? 'Predeterminado' : 'Secundario' }}
+        </span>
+      </div>
+      
+      <div class="payment-card-content">
+        <div class="payment-detail">
+          <span class="detail-label">Tipo de Tarjeta</span>
+          <span class="detail-value card-brand">{{ method.brand | titlecase }}</span>
+        </div>
+        
+        <div class="payment-detail">
+          <span class="detail-label">Últimos 4 dígitos</span>
+          <span class="detail-value card-number">•••• {{ method.last4 }}</span>
+        </div>
+        
+        <div class="payment-detail">
+          <span class="detail-label">Vencimiento</span>
+          <span class="detail-value expiry-date">{{ method.expMonth }}/{{ method.expYear }}</span>
+        </div>
+        
+        <div class="payment-detail">
+          <span class="detail-label">Agregado</span>
+          <span class="detail-value">{{ method.createdAt | date:'dd/MM/yyyy' }}</span>
+        </div>
+      </div>
+
+      <!-- Acciones para cada método de pago -->
+      <div class="card-actions">
+        <button class="action-btn set-default" 
+                *ngIf="!method.isDefault"
+                (click)="setDefaultMethod(method)">
+          Establecer como predeterminado
+        </button>
+      
+        <button class="action-btn delete-method" 
+                (click)="deleteMethod(method.id)">
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Estado vacío - botón interno cuando no hay elementos -->
+  <div class="empty-state" *ngIf="!userPaymentMethod || userPaymentMethod.length === 0">
+    <div class="empty-icon">💳</div>
+    <p>No tienes métodos de pago registrados</p>
+    <button class="add-method-btn" (click)="addPaymentMethod()">
+      Agregar método de pago
+    </button>
+  </div>
+</div>
+
+<div *ngIf="showCreate" class="modal-overlay">
+  <div class="modal-container">
+    <app-add-payment-method (closeModal)="showCreate = false" (addOnSuccess)="onAddSuccess($event)" (addOnFailure)="onAddFailure($event)" (closeModal)="closeCreate()"></app-add-payment-method>
+  </div>
+</div>
+
+<div *ngIf="errorMessage">
+  <app-message-toast [message]="errorMessage" [type]="'error'"></app-message-toast>
+</div>
+
+<div *ngIf="successMessage">
+  <app-message-toast [message]="successMessage" [type]="'success'"></app-message-toast>
+</div>
+
+<button class="add-method-btn" 
+              *ngIf="userPaymentMethod && userPaymentMethod.length > 0"
+              (click)="addPaymentMethod()">
+        <span class="plus-icon">+</span>
+        Agregar Método
+      </button>

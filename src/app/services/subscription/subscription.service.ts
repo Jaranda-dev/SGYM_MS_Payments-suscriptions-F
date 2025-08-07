@@ -66,6 +66,18 @@ export class SubscriptionService {
       })
     );
   }
+  getByUser(): Observable<Subscription[]> {
+    return this.http.get<ApiResponse<Subscription[]>>(`${this.baseUrl}/user/subscriptions`).pipe(
+      map(response => {
+        if (response.status === 'success') {
+          return response.data;
+        } else {
+          throw new Error(response.msg);
+        }
+      })
+    );
+
+  }
 
 
 }

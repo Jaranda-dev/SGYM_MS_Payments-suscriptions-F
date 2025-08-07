@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   apiUrl: 'http://localhost:3333',
-  stripeKey: 'pk_live_0987654321'
+STRIPE_PUBLIC_KEY: 'pk_test_51RsQ3s1ArB5UTM0zaB04JTb5FuDKhkrSbni48JJ6cnZK8JGDUbfx6FftuL6tIdYlGXXK4SDNGqkYRIyhfA851qA400yoaE6nNh'
 }

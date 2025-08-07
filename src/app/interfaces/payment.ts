@@ -1,8 +1,14 @@
 export interface Payment {
-    id: number
-    userId: number
-    paymentRequestId: number
-    paymentMethodId: number
-    amount: number
-    status: 'success' | 'failed'
+  id: number
+  paymentRequestId: number
+  subscriptionId: number
+  amount: string
+  paymentDate: string
+  concept?: string
+  status: 'pending' | 'processing' | 'success' | 'failed' | 'canceled'
+  createdAt: string
+  subscription?: Subscription
+  paymentRequest?: PaymentRequest
 }
+import { Subscription } from './subscription'
+import { PaymentRequest } from './payment-request'

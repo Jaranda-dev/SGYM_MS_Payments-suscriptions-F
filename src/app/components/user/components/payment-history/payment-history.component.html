@@ -1,0 +1,48 @@
+<div class="payment-history-wrapper">
+  <div class="history-header">
+    Historial de Pagos
+  </div>
+  
+  <div class="payment-list" *ngIf="payments && payments.length > 0">
+    <div class="payment-card" *ngFor="let payment of payments">
+      <div class="payment-card-header">
+        <h3 class="payment-id">Pago #{{ payment.id }}</h3>
+        <span class="payment-status" 
+              [ngClass]="{
+                'status-completed': payment.status === 'success',
+                'status-pending': payment.status === 'pending',
+                'status-failed': payment.status === 'failed'
+              }">
+          {{ payment.status }}
+        </span>
+      </div>
+      
+      <div class="payment-card-content">
+        <div class="payment-detail">
+          <span class="detail-label">Monto</span>
+          <span class="detail-value amount-value">${{ payment.amount }}</span>
+        </div>
+        
+        <div class="payment-detail">
+          <span class="detail-label">Fecha</span>
+          <span class="detail-value">{{ payment.createdAt | date:'dd/MM/yyyy HH:mm' }}</span>
+        </div>
+        
+        <div class="payment-detail">
+          <span class="detail-label">Concepto</span>
+          <span class="detail-value">{{ payment.concept }}</span>
+        </div>
+        
+        <div class="payment-detail" *ngIf="payment.subscription?.membership?.name">
+          <span class="detail-label">Membresía</span>
+          <span class="detail-value">{{ payment.subscription!.membership!.name }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="empty-state" *ngIf="!payments || payments.length === 0">
+    <div class="empty-icon">💳</div>
+    <p>No hay pagos registrados</p>
+  </div>
+</div>

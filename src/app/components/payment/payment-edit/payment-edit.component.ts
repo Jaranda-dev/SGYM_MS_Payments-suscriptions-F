@@ -29,11 +29,12 @@ export class PaymentEditComponent{
     private router: Router
   ) {
     this.form = this.fb.group({
-      userId: ['', [Validators.required]],
-      paymentRequestId: ['', [Validators.required]],
-      paymentMethodId: ['', [Validators.required]],
-      amount: [0, [Validators.required, Validators.min(0)]],
-      status: ['', [Validators.required]]
+      paymentRequestId: ['', Validators.required],
+      subscriptionId: ['', Validators.required],
+      amount: ['', [Validators.required, Validators.min(0)]],
+      paymentDate: ['', Validators.required],
+      concept: [''],
+      status: ['', Validators.required]
     })
   }
 
@@ -62,10 +63,11 @@ export class PaymentEditComponent{
   ngOnChanges() {
     if (this.payment) {
       this.form.patchValue({
-        userId: this.payment.userId,
         paymentRequestId: this.payment.paymentRequestId,
-        paymentMethodId: this.payment.paymentMethodId,
+        subscriptionId: this.payment.subscriptionId,
         amount: this.payment.amount,
+        paymentDate: this.payment.paymentDate,
+        concept: this.payment.concept || '',
         status: this.payment.status
       })
     }
