@@ -8,13 +8,14 @@ import { DataTableComponent } from '../data-table/data-table.component'
 import { MembershipCreateComponent } from './membership-create/membership-create.component'
 import { MembershipEditComponent } from './membership-edit/membership-edit.component'
 import { MessageToastComponent } from '../resources/message-toast/message-toast.component'
+import { MessageCardComponent } from '../resources/message-card/message-card.component'
 
 
 
 @Component({
   selector: 'app-membership',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,DataTableComponent,MembershipCreateComponent, MembershipEditComponent, MessageToastComponent],
+  imports: [CommonModule, ReactiveFormsModule,DataTableComponent,MembershipCreateComponent, MembershipEditComponent, MessageToastComponent,MessageCardComponent],
   templateUrl: './membership.component.html',
   styleUrl: './membership.component.css'
 })
@@ -28,6 +29,8 @@ export class MembershipComponent implements OnInit {
   showEdit = false
   selectedMembership: Membership | null = null
   successMessage = ''
+  showDeleteConfirmation = false
+  membershipdeleted: Membership | null = null
 
   constructor(private membershipService: MembershipService, public router: Router) {}
 
@@ -38,6 +41,8 @@ export class MembershipComponent implements OnInit {
   
 
   loadMemberships() {
+    this.showDeleteConfirmation = false
+    this.membershipdeleted = null
 
     this.memberships = []
     this.errorMessage = ''
@@ -53,16 +58,25 @@ export class MembershipComponent implements OnInit {
 
   }
 
+  
+
     onDelete(item: Membership) {
-    if (confirm(`¿Eliminar membresía "${item.name}"?`)) {
-      this.membershipService.delete(item.id).subscribe({
+      this.showDeleteConfirmation = true
+      this.membershipdeleted = item
+  }
+
+  delete(){
+
+      this.membershipService.delete(this.membershipdeleted!.id).subscribe({
         next: () => {
           this.onSuccess('Membresía eliminada con éxito')
-          this.memberships = this.memberships.filter(m => m.id !== item.id)
+          this.loadMemberships()
         },
-        error: err => alert(err.message || 'Error al eliminar')
+        error: () => this.onFailure('Error al eliminar membresía')
+        
       })
-    }
+      this.membershipdeleted = null
+    
   }
 
   onCreate() {

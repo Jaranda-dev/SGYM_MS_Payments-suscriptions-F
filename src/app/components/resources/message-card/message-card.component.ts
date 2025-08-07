@@ -7,8 +7,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './message-card.component.css'
 })
 export class MessageCardComponent {
- @Input() message: string = '¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.';
-  @Input() title: string = 'Eliminar usuario';
+ @Input() message: string = '';
+  @Input() title: string = '';
   @Output() confirm = new EventEmitter<void>();
   @Output() cancel = new EventEmitter<void>();
   onConfirm() {

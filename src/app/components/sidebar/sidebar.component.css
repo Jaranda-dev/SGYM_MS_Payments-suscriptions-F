@@ -1,45 +1,15 @@
+/* === Contenedor principal de sidebar === */
 .sidebar {
-  width: 220px;
+  width: 20vw;
   height: 100vh;
-  background-color: #6a0dad;
-  color: white;
-  font-family: Arial, sans-serif;
-  padding-top: 1.5rem;
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   position: fixed;
-  left: 0;
   top: 0;
+  left: 0;
   overflow-y: auto;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar li {
-  margin-bottom: 1rem;
-}
-
-.sidebar a {
-  color: #ccc;
-  text-decoration: none;
-  font-weight: bold;
-  display: block;
-  padding: 0.75rem 1.5rem;
-  border-left: 4px solid transparent;
-  transition: all 0.3s ease;
-}
-
-.sidebar a:hover {
-  color: white;
-  background-color: #530f9b;
-  border-left-color: white;
-}
-
-.sidebar li.active > a,
-.sidebar a.active {
-  background-color: white;
-  color: #6a0dad;
-  border-left-color: #6a0dad;
+  z-index: 1000;
+  transition: transform 0.3s ease;
 }

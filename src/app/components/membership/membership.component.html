@@ -31,3 +31,7 @@
 <div *ngIf="successMessage">
   <app-message-toast [message]="successMessage" [type]="'success'"></app-message-toast>
 </div>
+
+<div *ngIf="showDeleteConfirmation" class="modal-overlay">
+  <app-message-card *ngIf="showDeleteConfirmation" [message]="'¿Estás seguro de que deseas eliminar esta membresía?'" [title]="'Confirmación'" (confirm)="delete()" (cancel)="showDeleteConfirmation = false"></app-message-card>
+</div>
