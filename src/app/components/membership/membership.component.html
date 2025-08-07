@@ -20,7 +20,7 @@
 
 <div *ngIf="showEdit" class="modal-overlay">
   <div class="modal-container">
-    <app-membership-edit *ngIf="selectedMembership" [membership]="selectedMembership" (okEdit)="okEdit($event)" (onCancel)="closeEdit()"></app-membership-edit>
+    <app-membership-edit *ngIf="selectedMembership" [membership]="selectedMembership" (onFailure)="onFailure($event)" (okEdit)="okEdit($event)" (onCancel)="closeEdit()"></app-membership-edit>
   </div>
 </div>
 

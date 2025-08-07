@@ -1,6 +1,6 @@
 .modal-form {
   background-color: #ffffff;
-  border-radius: 0.5vw;
+  border-radius: 2vw;
   padding: 2rem;
   width: 100%;
   max-width: 28vw;
@@ -63,7 +63,7 @@ input:focus {
 .btn-cancel,
 .btn-submit {
   border: none;
-  border-radius: 0.4vw;
+  border-radius: 3vw;
   padding: 0.8vh 1.5vw;
   font-weight: 500;
   cursor: pointer;

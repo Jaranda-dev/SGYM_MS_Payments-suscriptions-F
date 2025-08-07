@@ -1,0 +1,47 @@
+
+
+<div class="modal-form">
+  <h2>Crear Promoción</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input id="name" formControlName="name" type="text" placeholder="Nombre" value="{{ form.get('name')?.value }}"/>
+      <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="error">
+        Nombre requerido y máximo 50 caracteres
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="discount">Descuento (%)</label>
+      <input id="discount" formControlName="discount" type="number" placeholder="Descuento (%)" value="{{ form.get('discount')?.value }}"/>
+      <div *ngIf="form.get('discount')?.invalid && form.get('discount')?.touched" class="error">
+        Descuento mínimo 0 y máximo 100
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="startDate">Fecha de Inicio</label>
+      <input id="startDate" formControlName="startDate" type="date" value="{{ form.get('startDate')?.value }}" />
+      <div *ngIf="form.get('startDate')?.invalid && form.get('startDate')?.touched" class="error">
+        Fecha de inicio requerida
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="endDate">Fecha de Fin</label>
+      <input id="endDate" formControlName="endDate" type="date" value="{{ form.get('endDate')?.value }}" />
+      <div *ngIf="form.get('endDate')?.invalid && form.get('endDate')?.touched" class="error">
+        Fecha de fin requerida
+      </div>
+
+    <div class="form-buttons">
+      <button type="button" class="btn-cancel" (click)="handleCancel()">Cancelar</button>
+      <button type="submit" class="btn-submit" [disabled]="form.invalid">Crear</button>
+    </div>
+</div>
+  </form>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+</div>

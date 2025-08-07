@@ -4,20 +4,23 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { Router } from '@angular/router'
 import { MembershipService } from '../../../services/membership/membership.service';
 import { CommonModule } from '@angular/common';
-import { Membership } from '../../../interfaces/membership';
+import { Promotion } from '../../../interfaces/promotion';
+
+
+
 
 @Component({
-  selector: 'app-membership-edit',
-  imports:[CommonModule, ReactiveFormsModule],
-  templateUrl: './membership-edit.component.html',
-  styleUrl: './membership-edit.component.css'
+  selector: 'app-promotion-edit',
+  imports: [ CommonModule, ReactiveFormsModule ],
+  templateUrl: './promotion-edit.component.html',
+  styleUrl: './promotion-edit.component.css'
 })
-export class MembershipEditComponent {
+export class PromotionEditComponent {
   form: FormGroup
   errorMessage = ''
  
 
-  @Input() membership !: Membership
+  @Input() promotion !: Promotion
 
   @Output() onCancel = new EventEmitter<any>()
   @Output() okEdit  = new EventEmitter<any>()
@@ -31,17 +34,18 @@ export class MembershipEditComponent {
   ) {
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(50)]],
-      durationDays: [30, [Validators.required, Validators.min(1)]],
-      price: [0, [Validators.required, Validators.min(0)]]
+      discount: [0, [Validators.required, Validators.min(0), Validators.max(100)]],
+      startDate: [null, [Validators.required]],
+      endDate: [null, [Validators.required]]
     })
 }
 
   submit() {
     if (this.form.invalid) return
 
-    this.membershipService.update(this.membership.id, this.form.value).subscribe({
-      next: () => this.handleEdit('Membresía editada con éxito'),
-      error: () => this.handleError('Error editando membresía')
+    this.membershipService.update(this.promotion.id, this.form.value).subscribe({
+      next: () => this.handleEdit('Promoción editada con éxito'),
+      error: () => this.handleError('Error editando promoción')
     })
   }
 
@@ -58,11 +62,12 @@ export class MembershipEditComponent {
   }
 
   ngOnChanges() {
-    if (this.membership) {
+    if (this.promotion) {
       this.form.patchValue({
-        name: this.membership.name,
-        durationDays: this.membership.durationDays,
-        price: this.membership.price
+        name: this.promotion.name,
+        discount: this.promotion.discount,
+        startDate: this.promotion.startDate,
+        endDate: this.promotion.endDate
       })
     }
   }
