@@ -1,1 +1,35 @@
-<p>subscription works!</p>
+<h1>Suscripciones</h1>
+
+    <app-data-table
+  [headers]="headers"
+  [keys]="keys"
+  [data]="subscriptions "
+  (onEdit)="onEdit($event)"
+  (onDelete)="onDelete($event)"
+  (onCreate)="onCreate()"
+></app-data-table>
+
+<!-- Overlay modal -->
+<div *ngIf="showCreate" class="modal-overlay">
+  <div class="modal-container">
+    <app-subscription-create (okCreate)="okCreate($event)" (errorCreate)="onFailure($event)" (onCancel)="closeCreate()"></app-subscription-create>
+  </div>
+</div>
+
+<div *ngIf="showEdit" class="modal-overlay">
+  <div class="modal-container">
+    <app-subscription-edit *ngIf="selectedSubscription" [subscription]="selectedSubscription" (onFailure)="onFailure($event)" (okEdit)="okEdit($event)" (onCancel)="closeEdit()"></app-subscription-edit>
+  </div>
+</div>
+
+<div *ngIf="errorMessage">
+  <app-message-toast [message]="errorMessage" [type]="'error'"></app-message-toast>
+</div>
+
+<div *ngIf="successMessage">
+  <app-message-toast [message]="successMessage" [type]="'success'"></app-message-toast>
+</div>
+
+<div *ngIf="showDeleteConfirmation" class="modal-overlay">
+  <app-message-card *ngIf="showDeleteConfirmation" [message]="'¿Estás seguro de que deseas eliminar esta membresía?'" [title]="'Confirmación'" (confirm)="delete()" (cancel)="showDeleteConfirmation = false"></app-message-card>
+</div>

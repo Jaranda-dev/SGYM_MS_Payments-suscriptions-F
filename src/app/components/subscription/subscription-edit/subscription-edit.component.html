@@ -1,1 +1,58 @@
-<p>subscription-edit works!</p>
+<div class="modal-form">
+  <h2>Crear Suscripción</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="userId">ID de Usuario</label>
+      <input id="userId" formControlName="userId" type="number" placeholder="ID de Usuario" value="{{ subscription.userId }}" />
+      <div *ngIf="form.get('userId')?.invalid && form.get('userId')?.touched" class="error">
+        ID de Usuario requerido y mínimo 1
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="membershipId">ID de Membresía</label>
+      <input id="membershipId" formControlName="membershipId" type="number" placeholder="ID de Membresía" value="{{ subscription.membershipId }}" />
+      <div *ngIf="form.get('membershipId')?.invalid && form.get('membershipId')?.touched" class="error">
+        ID de Membresía requerido y mínimo 1
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="startDate">Fecha de Inicio</label>
+      <input id="startDate" formControlName="startDate" type="date" placeholder="Fecha de Inicio" value="{{ subscription.startDate }}" />
+      <div *ngIf="form.get('startDate')?.invalid && form.get('startDate')?.touched" class="error">
+        Fecha de Inicio requerida
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="endDate">Fecha de Fin</label>
+      <input id="endDate" formControlName="endDate" type="date" placeholder="Fecha de Fin" value="{{ subscription.endDate }}" />
+      <div *ngIf="form.get('endDate')?.invalid && form.get('endDate')?.touched" class="error">
+        Fecha de Fin requerida
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="status">Estado</label>
+      <select id="status" formControlName="status" value="{{ subscription.status }}">
+        <option value="active">Activo</option>
+        <option value="cancelled">Cancelado</option>
+        <option value="expired">Expirado</option>
+      </select>
+      <div *ngIf="form.get('status')?.invalid && form.get('status')?.touched" class="error">
+        Estado requerido
+      </div>
+    </div>
+
+
+    <div class="form-buttons">
+      <button type="button" class="btn-cancel" (click)="handleCancel()">Cancelar</button>
+      <button type="submit" class="btn-submit" [disabled]="form.invalid">Crear</button>
+    </div>
+  </form>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+</div>
