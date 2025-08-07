@@ -1,97 +1,143 @@
 .table-wrapper {
-  overflow-x: auto;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f3f2ff;
+  border: 0.15vw solid #7a5af8;
+  border-radius: 0.7vw;
+  overflow-y: auto;
   margin-top: 1rem;
-  border: 2px solid #a874f2;
-  border-radius: 0.75rem;
-  background-color: #f9f0ff;
-  box-shadow: 0 10px 25px rgba(160, 90, 240, 0.15);
+  height: 60vh;
 }
+
 
 .custom-table {
   width: 100%;
   border-collapse: collapse;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  color: #3b3b3b;
+  
 }
 
-.custom-table th,
-.custom-table td {
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid #d9bdf2;
-}
-
-.custom-table th {
-  background-color: #d6a4fc;
-  color: #3c0069;
-  font-weight: bold;
-  text-align: left;
-}
-
-.custom-table tr:hover {
-  background-color: #f5eaff;
-}
-
-.icon-button {
-  border: none;
-  border-radius: 9999px;
-  padding: 0.4rem 0.6rem;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  margin-right: 0.3rem;
-  transition: background-color 0.3s ease;
-}
-
-.edit-button {
-  background-color: #f0ad4e;
-  color: white;
-}
-
-.edit-button:hover {
-  background-color: #ec9a1f;
-}
-
-.delete-button {
-  background-color: #d9534f;
-  color: white;
-}
-
-.delete-button:hover {
-  background-color: #c9302c;
-}
-
-.view-button {
-  background-color: #6a0dad;
-  color: white;
-}
-
-.view-button:hover {
-  background-color: #530f9b;
-}
-
+/* === Header de la tabla === */
 .table-header {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
 }
 
+/* === Botón crear === */
 .btn-create {
-  background-color: #6a0dad;
+  background-color: #7710d4;
   color: white;
   border: none;
-  border-radius: 1.5rem;
-  padding: 0.5rem 1.5rem;
-  font-size: 1rem;
-  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: 1.2vw; /* Valor relativo más redondo */
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(106, 13, 173, 0.4);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease;
 }
 
 .btn-create:hover {
-  background-color: #530f9b;
-  box-shadow: 0 6px 12px rgba(83, 15, 155, 0.6);
+  background-color: #5a0ca0;
+}
+
+/* === Encabezados === */
+.custom-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f3f2ff; /* fondo fijo */
+  color: #673ab7;
+  font-weight: bold;
+  padding: 1.4vh 1vw;    /* más espacio arriba/abajo y lados */
+  font-size: 1.1rem;    /* tamaño de fuente mayor */
+  text-align: left;
+  border-bottom: 0.1vh solid #9c27b0;
+  z-index: 2;
+}
+
+
+/* === Filas del cuerpo === */
+.custom-table tbody tr {
+  border-bottom: 0.1vh solid #9c27b0;
+  transition: background-color 0.2s ease;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #f8f5ff;
+}
+
+/* === Celdas === */
+.custom-table tbody td {
+  padding: 0.5vh 0.5vw;
+  color: #333;
+}
+
+/* === Columna de acciones === */
+.custom-table tbody td:last-child {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* === Botones de acción === */
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25vw;
+  transition: all 0.2s ease;
+  font-size: 1.1rem;
+}
+
+.edit-button {
+  color: #7710d4;
+}
+
+.edit-button:hover {
+  background-color: #f3f2ff;
+  transform: scale(1.1);
+}
+
+.delete-button {
+  color: #d32f2f;
+}
+
+.delete-button:hover {
+  background-color: #ffebee;
+  transform: scale(1.1);
+}
+
+.view-button {
+  color: #1976d2;
+}
+
+.view-button:hover {
+  background-color: #e3f2fd;
+  transform: scale(1.1);
+}
+
+/* === Estado vacío === */
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .custom-table {
+    font-size: 0.875rem;
+  }
+  
+  .custom-table thead th,
+  .custom-table tbody td {
+    padding: 0.4vh 0.3vw;
+  }
+  
+  .icon-button {
+    font-size: 1rem;
+  }
 }

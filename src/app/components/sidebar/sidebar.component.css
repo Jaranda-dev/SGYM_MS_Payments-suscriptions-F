@@ -12,4 +12,98 @@
   overflow-y: auto;
   z-index: 1000;
   transition: transform 0.3s ease;
+  padding: 2vh 0;
+}
+
+/* === Lista de navegación === */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh; /* Aumentado de 0.6vh a 1.2vh para mayor separación */
+}
+
+/* === Items de la lista === */
+.sidebar li {
+  margin: 0 0.5vw;
+  padding: 0;
+}
+
+/* === Enlaces de navegación === */
+.sidebar a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  padding: 1.2vh 1vw; /* Aumentado de 0.8vh a 1.4vh para mayor altura */
+  border-radius: 3vh;
+  background-color: #2C2C2C;
+  transition: all 0.3s ease;
+  min-height: 4.5vh; /* Aumentado de 3vh a 4.5vh para mayor altura mínima */
+}
+
+/* === Estado activo === */
+.sidebar li.active a {
+  background-color: #7C4DFF;
+}
+
+/* === Hover effect === */
+.sidebar a:hover {
+  background-color: #404040;
+}
+
+.sidebar li.active a:hover {
+  background-color: #6A3FE6;
+}
+
+/* === Contenido del enlace === */
+.sidebar a span {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-size: 0.9vw;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* === Espaciado entre icono y texto === */
+.sidebar a span::first-letter {
+  margin-right: 0.5vw;
+  font-size: 1.2em;
+}
+
+/* === Responsive adjustments === */
+@media (max-width: 1200px) {
+  .sidebar {
+    width: 25vw;
+  }
+  
+  .sidebar a span {
+    font-size: 1.1vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 30vw;
+  }
+  
+  .sidebar a span {
+    font-size: 1.4vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 35vw;
+  }
+  
+  .sidebar a span {
+    font-size: 1.8vw;
+  }
 }

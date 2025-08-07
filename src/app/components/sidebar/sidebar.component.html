@@ -3,6 +3,8 @@
     <li *ngFor="let item of menuItems" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
       <a [routerLink]="item.path">
         <span>{{ item.icon }} {{ item.label }}</span>
+        
+        
       </a>
     </li>
   </ul>

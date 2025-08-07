@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router'
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-sidebar',
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
