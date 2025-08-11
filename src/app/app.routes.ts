@@ -21,7 +21,7 @@ export const routes: Routes = [
   { path: 'dashboard/user', component: DashboardComponent, canActivate: [PermissionGuard], data: { page: 'dashboard/user' } },
   { path: 'user/manage-subscription', component: ManageSubscriptionComponent, canActivate: [PermissionGuard], data: { page: 'user/manage-subscription' } },
   { path: 'main', component: MainComponent, canActivate: [PermissionGuard], data: { page: 'main' } },
-  { path: 'dashboard/admin', component: DashboardAdminComponent, children: [
+  { path: 'dashboard/admin', component: DashboardAdminComponent, canActivate: [PermissionGuard], data: { page: 'dashboard/admin' }, children: [
     { path: 'membership', component: MembershipComponent, canActivate: [PermissionGuard], data: { page: 'dashboard/admin/membership' } },
     { path: 'promotion', component: PromotionComponent, canActivate: [PermissionGuard], data: { page: 'dashboard/admin/promotion' } },
     { path: 'subscription', component: SubscriptionComponent, canActivate: [PermissionGuard], data: { page: 'dashboard/admin/subscription' } },
