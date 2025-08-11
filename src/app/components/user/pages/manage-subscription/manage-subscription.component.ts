@@ -30,6 +30,7 @@ export class ManageSubscriptionComponent {
   selectedMembership: Membership | null = null;
   selectedUserPaymentMethod: UserPaymentMethod | null = null;
   selectedPromotion: Promotion | null = null;
+  isRenewal: boolean = false;
 
   view = {
     memberships: true,
@@ -94,7 +95,8 @@ export class ManageSubscriptionComponent {
         MembershipId: this.selectedMembership.id,
         PaymentMethodId: this.selectedUserPaymentMethod.id,
 
-        PromotionId: this.selectedPromotion ? this.selectedPromotion.id : undefined
+        PromotionId: this.selectedPromotion ? this.selectedPromotion.id : undefined,
+        isRenewable: this.isRenewal
       }).subscribe({
         next: () => {
           console.log('Suscripción confirmada');
@@ -104,6 +106,12 @@ export class ManageSubscriptionComponent {
       });
     }
   }
+handleChangeRenewal(event: boolean) {
+    this.isRenewal = event;
+    console.log('Renovación:', this.isRenewal);
+
+}
+  
 
    async  getPromotionByMembershipId(membershipId: number) {
     this.promotionService.getPromotionByMembershipId(membershipId).subscribe({
@@ -117,8 +125,13 @@ export class ManageSubscriptionComponent {
 
   async getDefaultPaymentMethod() {
     this.userPaymentMethodService.getDefault().subscribe({
-      next: pm => this.selectedUserPaymentMethod = pm,
+      next: data =>{
+console.log('Default payment method data:', data);
+this.selectedUserPaymentMethod = data;
+      }, 
+      
       error: err => console.error('Error fetching default payment method:', err)
     });
+    console.log('Default payment method:', this.selectedUserPaymentMethod);
   }
 }

@@ -42,6 +42,20 @@
     </div>
   </div>
 
+<div class="subscribe-section">
+  <label class="section-label">Renovación</label>
+  <div class="section-content">
+    <input
+      type="checkbox"
+      id="renewalCheckbox"
+      (change)="handleChangeRenewal($event)"
+      [checked]="isRenewal"
+    />
+    <label for="renewalCheckbox" class="change-btn"></label>
+  </div>
+</div>
+
+
   <div class="subscribe-actions">
     <button class="confirm-btn" (click)="handleConfirmSubscription()" [disabled]="!selectedMembership || !selectedUserPaymentMethod">
       Confirmar Suscripción

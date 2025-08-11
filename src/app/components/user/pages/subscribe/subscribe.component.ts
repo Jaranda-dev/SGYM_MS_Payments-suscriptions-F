@@ -22,6 +22,7 @@ export class SubscribeComponent {
 @Output() ChangePaymentMethod = new EventEmitter<void>();
 @Output() ChangePromotion = new EventEmitter<void>();
 @Output() ConfirmSubscription = new EventEmitter<void>();
+@Output() ChangeRenewal = new EventEmitter<boolean>();
 
 
 
@@ -43,6 +44,15 @@ handleConfirmSubscription() {
 
 handleChangeMembership() {
   this.ChangeMembership.emit();
+}
+
+isRenewal = false
+
+handleChangeRenewal(event: Event) {
+  const input = event.target as HTMLInputElement
+  this.isRenewal = input.checked
+  console.log('Renovación:', this.isRenewal)
+  this.ChangeRenewal.emit(this.isRenewal);
 }
 
 
