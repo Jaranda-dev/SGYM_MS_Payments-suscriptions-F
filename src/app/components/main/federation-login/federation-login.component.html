@@ -1,2 +1,5 @@
-<p>federation-login works!</p>
-
+<div class="federation-login-wrapper">
+    <div class="federation-title">Inicio de Sesión Federación</div>
+    <div class="federation-message" *ngIf="message">{{message}}</div>
+    <div class="federation-error" *ngIf="messageError">{{messageError}}</div>
+</div>

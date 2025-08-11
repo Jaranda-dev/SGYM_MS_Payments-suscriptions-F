@@ -26,4 +26,10 @@ export class AuthService {
     return this.http.get(`${this.baseUrl}/login?redirect=redirect_uri=${this.url}`);
   }
 
+  hasPermission(page: string): Observable<boolean> {
+    return this.http.get<ApiResponse<any>>(`${this.baseUrl}/access/permissions?page=${page}`).pipe(
+      map(response => response.status === 'success')
+    );
+  }
+
 }
