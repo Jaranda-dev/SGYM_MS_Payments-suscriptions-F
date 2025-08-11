@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { UserPaymentMethodService } from '../../../../services/user-payment-method/user-payment-method.service';
 import { UserPaymentMethod } from '../../../../interfaces/user-payment-method';
 import { CommonModule } from '@angular/common';
@@ -11,10 +11,12 @@ import { MessageToastComponent } from '../../../resources/message-toast/message-
   styleUrls: ['./payment-method-list.component.css']
 })
 export class PaymentMethodListComponent{
+  @Output() paymentMethodSelected = new EventEmitter<void>();
   constructor(private userPaymentMethodService: UserPaymentMethodService) { }
   userPaymentMethod: UserPaymentMethod[] = [];
   showCreate: boolean = false;
-errorMessage = '';
+
+  errorMessage = '';
   successMessage = '';
   ngOnInit() {
     this.loadPaymentHistory();
@@ -32,9 +34,12 @@ errorMessage = '';
       next: () => {
         console.log('Método de pago eliminado:', id);
         this.loadPaymentHistory();
+        this.successMessage = 'Método de pago eliminado con éxito';
+        
       },
       error: (error) => {
         console.error('Error al eliminar el método de pago:', error);
+        this.errorMessage = 'Error al eliminar el método de pago';
       }
     });
   }
@@ -50,11 +55,13 @@ errorMessage = '';
 
     this.userPaymentMethodService.update(method.id, method).subscribe({
       next: () => {
-        console.log('Método de pago establecido como predeterminado:', method);
+        console.log('Método de pago establecido como predeterminado:', method.id);
         this.loadPaymentHistory();
+        this.paymentMethodSelected.emit();
       },
       error: (error) => {
         console.error('Error al establecer el método de pago como predeterminado:', error);
+        this.errorMessage = 'Error al establecer el método de pago como predeterminado';
       }
     });
   }
@@ -65,12 +72,14 @@ errorMessage = '';
   closeCreate() {
     this.showCreate = false;
   }
-  onAddSuccess(message: string) {
-    console.log('Éxito al agregar método de pago:', message);
-    this.successMessage = message;
+  onAddSuccess(id: number) {
+    console.log('Éxito al agregar método de pago:', id);
+    this.successMessage = 'Método de pago agregado exitosamente';
     setTimeout(() => (this.successMessage = ''), 2000);
     this.loadPaymentHistory();
     this.closeCreate();
+    this.paymentMethodSelected.emit();
+   
   }
   onAddFailure(message: string) {
     console.log('Fallo al agregar método de pago:', message);
@@ -78,6 +87,9 @@ errorMessage = '';
     setTimeout(() => (this.errorMessage = ''), 2000);
     this.closeCreate();
   }
- 
+
+  handlePaymentMethodSelected() {
+    this.paymentMethodSelected.emit();
+  }
 
 }

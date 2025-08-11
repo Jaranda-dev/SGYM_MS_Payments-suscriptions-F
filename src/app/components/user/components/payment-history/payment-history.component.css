@@ -5,7 +5,8 @@
   border-radius: 0.7vw;
   overflow-y: auto;
   margin-top: 1rem;
-  height: 60vh;
+  max-height: 60vh;
+  overflow-y: auto;
   padding: 1rem;
 }
 
@@ -29,10 +30,34 @@
 
 
 /* === Lista de pagos === */
+/* === Lista de métodos de pago === */
 .payment-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+  justify-items: stretch;
+  align-items: stretch;
+  max-height: 48vh;
+  overflow-y: auto;
+  margin-top: 1.2rem;
+}
+@media (max-width: 1200px) {
+  .payment-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .payment-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .payment-list {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 
 /* === Tarjeta de pago individual === */
@@ -195,5 +220,259 @@
 
   .payment-card-content {
     gap: 0.5rem;
+  }
+}
+
+/* === Contenedor principal del historial === */
+.payment-history-wrapper {
+  background-color: #f3f2ff;
+  border: 2px solid #7a5af8;
+  border-radius: 8px;
+  margin-top: 1rem;
+  max-height: 100%; /* Depende del contenedor */
+  padding: 1rem;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.history-header {
+  position: sticky;
+  top: 0;
+  background-color: #f3f2ff;
+  color: #673ab7;
+  font-weight: bold;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #9c27b0;
+  z-index: 10;
+  margin: -1rem -1rem 1rem -1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(2px);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  color: #673ab7;
+}
+
+/* === Lista de métodos de pago === */
+.payment-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+  max-height: 48vh;
+  overflow-y: auto;
+  margin-top: 1.5rem;
+}
+
+/* === Tarjeta de método de pago === */
+.payment-card {
+  background-color: white;
+  border: 1px solid #9c27b0;
+  border-radius: 6px;
+  padding: 1rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.payment-card:hover {
+  background-color: #f8f5ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(119, 16, 212, 0.1);
+}
+
+/* === Header de la tarjeta === */
+.payment-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.payment-id {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #673ab7;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* === Estados === */
+.status-default {
+  background-color: #e8f5e8;
+  color: #2e7d32;
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-secondary {
+  background-color: #f0f0f0;
+  color: #666;
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* === Contenido de la tarjeta === */
+.payment-card-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.payment-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-label {
+  font-size: 0.85rem;
+  color: #5a5a5a;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.detail-value {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* === Datos específicos de tarjeta === */
+.card-brand {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #7710d4;
+  text-transform: capitalize;
+}
+
+.card-number {
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.expiry-date {
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* === Acciones === */
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.action-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.set-default {
+  background-color: #7710d4;
+  color: white;
+}
+
+.set-default:hover {
+  background-color: #5a0ca0;
+  transform: translateY(-1px);
+}
+
+.edit-method {
+  background-color: transparent;
+  color: #7710d4;
+  border: 1px solid #7710d4;
+}
+
+.edit-method:hover {
+  background-color: #f2f2fe;
+}
+
+.delete-method {
+  background-color: transparent;
+  color: #d32f2f;
+  border: 1px solid #d32f2f;
+}
+
+.delete-method:hover {
+  background-color: #ffebee;
+}
+
+/* === Estado vacío === */
+.empty-state {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #666;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.empty-icon {
+  font-size: 2.5rem;
+  color: #9c27b0;
+  margin-bottom: 0.5rem;
+}
+
+.add-method-btn {
+  background-color: #7710d4;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(119, 16, 212, 0.3);
+}
+
+.add-method-btn:hover {
+  background-color: #5a0ca0;
+  transform: translateY(-1px);
+}
+
+/* === Responsive adaptado al contenedor === */
+@container (max-width: 900px) {
+  .payment-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@container (max-width: 600px) {
+  .payment-list {
+    grid-template-columns: 1fr;
+  }
+  .payment-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .card-actions {
+    justify-content: center;
   }
 }

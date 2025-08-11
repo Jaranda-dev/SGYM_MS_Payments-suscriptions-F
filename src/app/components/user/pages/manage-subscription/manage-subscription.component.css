@@ -1,0 +1,158 @@
+/* Tarjetas de promoción estilo subscription-history */
+.promotion-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.styled-promotion-card {
+  background-color: #fff;
+  border: 1px solid #9c27b0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+.styled-promotion-card:hover {
+  background: #f8f5ff;
+  box-shadow: 0 4px 8px rgba(119, 16, 212, 0.12);
+}
+.promotion-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.7rem;
+}
+.promotion-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #673ab7;
+}
+.promotion-discount {
+  background: #e8f5e8;
+  color: #2e7d32;
+  padding: 0.3rem 0.7rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.promotion-card-content {
+  font-size: 0.95rem;
+  color: #5a5a5a;
+  margin-bottom: 0.7rem;
+}
+.promotion-card-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+.btn-primary {
+  background-color: #7710d4;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+.btn-primary:hover {
+  background-color: #5a0ca0;
+}
+.subscription-container {
+  max-width: 100%;
+  height: 100%;
+  margin: auto;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.subscription-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.header-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #555;
+  margin-top: 0.5rem;
+}
+
+.membership-section,
+.promotions-section,
+.subscribe-section,
+.payment-method-section {
+  margin-top: 2rem;
+}
+
+.promotion-title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.promotion-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.promotion-card {
+  flex: 1 1 calc(50% - 1rem);
+  background: white;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.promotion-card p {
+  margin-bottom: 0.5rem;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .promotion-card {
+    flex: 1 1 100%;
+  }
+}
+
+.change-btn {
+	background: #fff;
+	color: #7710d4;
+	border: 1px solid #7710d4;
+	border-radius: 6px;
+	padding: 0.4rem 1rem;
+	font-weight: 500;
+	cursor: pointer;
+	font-size: 0.95rem;
+	transition: background 0.2s, color 0.2s;
+  margin-top: 1rem;
+}
+.change-btn:hover {
+	background: #f3f2ff;
+	color: #5a0ca0;
+}

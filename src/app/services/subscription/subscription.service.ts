@@ -79,5 +79,17 @@ export class SubscriptionService {
 
   }
 
+  subscribeToMembership(params: { MembershipId: number; PaymentMethodId: number;  PromotionId?: number; isRenewable?: boolean }): Observable<void> {
+    const { MembershipId, PaymentMethodId, PromotionId, isRenewable } = params;
+    return this.http.post<ApiResponse<void>>(`${this.baseUrl}/user/subscribe`, { MembershipId, PaymentMethodId, PromotionId, isRenewable }).pipe(
+      map(response => {
+        if (response.status === 'success') {
+          return;
+        } else {
+          throw new Error(response.msg);
+        }
+      })
+    );
+  }
 
 }

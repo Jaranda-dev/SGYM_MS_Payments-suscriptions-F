@@ -9,6 +9,7 @@ import { ApiResponse } from '../../interfaces/api-response';
   providedIn: 'root'
 })
 export class PaymentMethodService {
+  
   private baseUrl = environment.apiUrl + '/payment-methods';
   constructor(private http: HttpClient) {}
   getAll(): Observable<PaymentMethod[]> {

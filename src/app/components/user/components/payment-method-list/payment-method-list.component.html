@@ -50,7 +50,7 @@
         <button class="action-btn set-default" 
                 *ngIf="!method.isDefault"
                 (click)="setDefaultMethod(method)">
-          Establecer como predeterminado
+          Usar Este Método
         </button>
       
         <button class="action-btn delete-method" 
@@ -85,9 +85,15 @@
   <app-message-toast [message]="successMessage" [type]="'success'"></app-message-toast>
 </div>
 
-<button class="add-method-btn" 
-              *ngIf="userPaymentMethod && userPaymentMethod.length > 0"
-              (click)="addPaymentMethod()">
-        <span class="plus-icon">+</span>
-        Agregar Método
-      </button>
+
+  <div class="footer-actions" *ngIf="userPaymentMethod && userPaymentMethod.length > 0">
+    <button class="add-method-btn left-action" (click)="addPaymentMethod()">
+      <span class="plus-icon">+</span>
+      Agregar Método
+    </button>
+    <span class="action-spacer"></span>
+    <button class="continue-btn right-action" (click)="handlePaymentMethodSelected()">
+      <span class="plus-icon">+</span>
+      Continuar
+    </button>
+  </div>

@@ -44,11 +44,11 @@ export class SubscriptionHistoryComponent {
 
   handleSubscriptionAction() {
     if (this.hasActiveSubscription()) {
-      // Si tiene suscripción activa, ir a cambiar suscripción
-      this.router.navigate(['/user/change-subscription']);
+      // Si tiene suscripción activa, ir a gestionar suscripción
+      this.router.navigate(['/user/manage-subscription']);
     } else {
       // Si no tiene suscripción activa, ir a suscribirse
-      this.router.navigate(['/user/subscribe']);
+      this.router.navigate(['/user/manage-subscription']);
     }
   }
 

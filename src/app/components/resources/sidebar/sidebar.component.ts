@@ -11,11 +11,11 @@ import { CommonModule } from '@angular/common';
 
 export class SidebarComponent {
 menuItems = [
-  { path: '/membership', label: 'Membresías', icon: '💳' },
-  { path: '/payment_method', label: 'Métodos de Pago', icon: '💼' },
-  { path: '/payment', label: 'Pagos', icon: '💰' },
-  { path: '/promotion', label: 'Promociones', icon: '🎉' },
-  { path: '/subscription', label: 'Suscripciones', icon: '📆' },
+  { path: 'membership', label: 'Membresías', icon: '💳' },
+  { path: 'promotion', label: 'Promociones', icon: '🎉' },
+  { path: 'subscription', label: 'Suscripciones', icon: '📆' },
+  { path: 'payment-method', label: 'Métodos de Pago', icon: '💼' },
+  { path: 'payment', label: 'Pagos', icon: '💰' },
 ];
 
 }

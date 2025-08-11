@@ -1,1 +1,53 @@
-<p>manage-subscription works!</p>
+<div class="subscription-container">
+
+  
+
+  <!-- Lista de Membresías -->
+  <section *ngIf="view.memberships" class="membership-section">
+    <app-membership-list (membershipSelected)="handleMembershipSelected($event)"></app-membership-list>
+  </section>
+
+  <!-- Promociones -->
+  <section *ngIf="view.promotions" class="promotions-section">
+    <h3 class="promotion-title">Promociones Válidas</h3>
+    <div class="promotion-list">
+      <div class="promotion-card styled-promotion-card" *ngFor="let promotion of promotions">
+        <div class="promotion-card-header">
+          <span class="promotion-title">{{ promotion.name }}</span>
+          <span class="promotion-discount">{{ promotion.discount }}% OFF</span>
+        </div>
+        <div class="promotion-card-content">
+          <span class="promotion-description">Promoción válida para esta membresía</span>
+        </div>
+        <div class="promotion-card-actions">
+          <button class="btn-primary" (click)="selectPromotion(promotion)">Seleccionar</button>
+        </div>
+      
+
+      </div>
+    </div>
+     <div>
+        <button class="change-btn" (click)="handlePaymentMethodSelected()">Regresar</button>
+       </div>
+
+  </section>
+
+  <!-- Suscripción -->
+  <section *ngIf="view.subscribe" class="subscribe-section">
+    <app-subscribe
+      [selectedMembership]="selectedMembership"
+      [selectedUserPaymentMethod]="selectedUserPaymentMethod"
+      [selectedPromotion]="selectedPromotion"
+      (ChangeMembership)="handleChangeMembership()"
+      (ChangePaymentMethod)="handleChangePaymentMethod()"
+      (ChangePromotion)="handleChangePromotion()"
+      (ConfirmSubscription)="handleConfirmSubscription()"
+    ></app-subscribe>
+  </section>
+
+  <!-- Métodos de Pago -->
+  <section *ngIf="view.paymentMethods" class="payment-method-section">
+    <app-payment-method-list (paymentMethodSelected)="handlePaymentMethodSelected()"></app-payment-method-list>
+  </section>
+
+</div>

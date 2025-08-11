@@ -1,6 +1,7 @@
-.main-content {
-  margin-left: 20vw;
-  padding: 2rem;
-  font-family: Arial, sans-serif;
-}
 
+
+.main-content {
+  height: 100%;
+  width: 100%;
+  background-color: #f3f2ff;
+}

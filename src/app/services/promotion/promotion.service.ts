@@ -67,6 +67,16 @@ export class PromotionService {
     );
   }
 
-
+  getPromotionByMembershipId(membershipId: number): Observable<Promotion[] | null> {
+    return this.http.get<ApiResponse<Promotion[] | null>>(`${this.baseUrl}/membership/${membershipId}`).pipe(
+      map(response => {
+        if (response.status === 'success') {
+          return response.data 
+        } else {
+          throw new Error(response.msg);
+        }
+      })
+    );
+  }
 
 }

@@ -1,18 +1,20 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
+import { AuthTokenService } from '../services/AuthToken/auth-token.service';
+
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  console.log('🔍 Interceptor ejecutándose para:', req.url);
-  
-  const token = localStorage.getItem('token') || sessionStorage.getItem('token');
-  
+  const tokenService = new AuthTokenService();
+
+   const token = tokenService.getToken();
+
   if (token) {
     const authReq = req.clone({
       headers: req.headers.set('Authorization', `Bearer ${token}`)
     });
-    console.log('✅ Token agregado a la petición');
+   
     return next(authReq);
   }
   
-  console.log('❌ No hay token disponible');
+
   return next(req);
 };

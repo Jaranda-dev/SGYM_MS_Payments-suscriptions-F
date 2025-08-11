@@ -47,5 +47,10 @@ export class UserPaymentMethodService {
     );
   }
 
+  getDefault(): Observable<UserPaymentMethod | null> {
+    return this.http.get<ApiResponse<UserPaymentMethod | null>>(`${this.baseUrl}/user/default`).pipe(
+      map(response => response.data)
+    );
+  }
 
 }

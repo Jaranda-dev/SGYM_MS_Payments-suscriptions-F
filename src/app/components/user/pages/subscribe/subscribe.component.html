@@ -1,0 +1,50 @@
+<div class="subscribe-wrapper">
+  <div class="subscribe-header">
+    <h2>Confirmar Suscripción</h2>
+  </div>
+
+  <div class="subscribe-section">
+    <label class="section-label">Membresía seleccionada</label>
+    <div class="section-content">
+      <span *ngIf="selectedMembership; else noMembership">
+        {{ selectedMembership.name }} - ${{ selectedMembership.price }} / {{ selectedMembership.durationDays }} días
+      </span>
+      <ng-template #noMembership>
+        <span class="empty-info">No seleccionada</span>
+      </ng-template>
+      <button class="change-btn" (click)="handleChangeMembership()">Cambiar</button>
+    </div>
+  </div>
+
+  <div class="subscribe-section">
+    <label class="section-label">Método de pago</label>
+    <div class="section-content">
+      <span *ngIf="selectedUserPaymentMethod; else noPaymentMethod">
+        {{ selectedUserPaymentMethod.brand | titlecase }} terminación {{ selectedUserPaymentMethod.last4 }}
+      </span>
+      <ng-template #noPaymentMethod>
+        <span class="empty-info">No seleccionado</span>
+      </ng-template>
+      <button class="change-btn" (click)="handleChangePaymentMethod()">Cambiar</button>
+    </div>
+  </div>
+
+  <div class="subscribe-section">
+    <label class="section-label">Promoción</label>
+    <div class="section-content">
+      <span *ngIf="selectedPromotion; else noPromotion">
+        {{ selectedPromotion.name }} - {{ selectedPromotion.discount }}% de descuento
+      </span>
+      <ng-template #noPromotion>
+        <span class="empty-info">No seleccionada</span>
+      </ng-template>
+      <button class="change-btn" (click)="handleChangePromotion()">Cambiar</button>
+    </div>
+  </div>
+
+  <div class="subscribe-actions">
+    <button class="confirm-btn" (click)="handleConfirmSubscription()" [disabled]="!selectedMembership || !selectedUserPaymentMethod">
+      Confirmar Suscripción
+    </button>
+  </div>
+</div>

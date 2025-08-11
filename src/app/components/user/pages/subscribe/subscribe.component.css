@@ -1,0 +1,90 @@
+/* Estilo principal del formulario de suscripción */
+.subscribe-wrapper {
+	background: #f3f2ff;
+	border: 2px solid #7a5af8;
+	border-radius: 10px;
+	max-width: 40vw;
+	margin: 2rem auto;
+	padding: 2rem 1.5rem;
+	box-shadow: 0 4px 16px rgba(122, 90, 248, 0.08);
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.subscribe-header h2 {
+	color: #673ab7;
+	font-size: 1.4rem;
+	margin-bottom: 1rem;
+	text-align: center;
+}
+
+.subscribe-section {
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(122, 90, 248, 0.06);
+	padding: 1rem 1.2rem;
+	margin-bottom: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.section-label {
+	color: #7a5af8;
+	font-weight: 600;
+	font-size: 1rem;
+	margin-bottom: 0.2rem;
+}
+
+.section-content {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+.empty-info {
+	color: #d32f2f;
+	font-style: italic;
+	font-size: 0.95rem;
+}
+
+.change-btn {
+	background: #fff;
+	color: #7710d4;
+	border: 1px solid #7710d4;
+	border-radius: 6px;
+	padding: 0.4rem 1rem;
+	font-weight: 500;
+	cursor: pointer;
+	font-size: 0.95rem;
+	transition: background 0.2s, color 0.2s;
+}
+.change-btn:hover {
+	background: #f3f2ff;
+	color: #5a0ca0;
+}
+
+.subscribe-actions {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 1.2rem;
+}
+
+.confirm-btn {
+	background: #43a047;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	padding: 0.7rem 1.5rem;
+	font-weight: 600;
+	font-size: 1.1rem;
+	cursor: pointer;
+	box-shadow: 0 3px 8px rgba(67, 160, 71, 0.18);
+	transition: background 0.2s;
+}
+.confirm-btn:hover,
+.confirm-btn:active {
+	background: #7710d4;
+}

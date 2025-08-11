@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MembershipService } from '../../../../services/membership/membership.service';
 import { Membership } from '../../../../interfaces/membership';
@@ -13,6 +13,7 @@ import { MembershipCardsComponent } from '../../../resources/membership-cards/me
 export class MembershipListComponent {
   memberships: Membership[] = [];
   selectedMembership: Membership | null = null;
+  @Output() membershipSelected: EventEmitter<Membership> = new EventEmitter<Membership>();
 
   constructor(private membershipService: MembershipService) { }
 
@@ -29,6 +30,7 @@ export class MembershipListComponent {
 
   selectMembership(membership: Membership) {
     this.selectedMembership = membership;
+    this.membershipSelected.emit(membership);
   }
 
 

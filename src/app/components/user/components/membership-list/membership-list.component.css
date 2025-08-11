@@ -1,0 +1,62 @@
+/* === Contenedor principal === */
+.membership-list-wrapper {
+	background-color: #f3f2ff;
+	border: 0.15vw solid #7a5af8;
+	border-radius: 0.7vw;
+	overflow-y: auto;
+	margin-top: 1rem;
+	max-height: 70vh;
+	padding: 1rem;
+}
+
+.history-header {
+	position: sticky;
+	top: 0;
+	background-color: #f3f2ff;
+	color: #673ab7;
+	font-weight: bold;
+	padding: 1.4vh 1vw;
+	border-bottom: 0.1vh solid #9c27b0;
+	z-index: 10;
+	margin: -1rem -1rem 1rem -1rem;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+	backdrop-filter: blur(2px);
+	text-align: center;
+}
+
+.header-title {
+	font-size: 1.5rem;
+	color: #673ab7;
+}
+
+/* === Lista de membresías === */
+.membership-list {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1.2rem;
+	justify-items: stretch;
+	align-items: stretch;
+}
+
+@media (max-width: 1200px) {
+	.membership-list {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (max-width: 900px) {
+	.membership-list {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 600px) {
+	.membership-list {
+		grid-template-columns: 1fr;
+		gap: 2rem;
+	}
+	.membership-list-wrapper {
+		max-height: 50vh;
+		padding: 1.2rem 0.5rem;
+	}
+}

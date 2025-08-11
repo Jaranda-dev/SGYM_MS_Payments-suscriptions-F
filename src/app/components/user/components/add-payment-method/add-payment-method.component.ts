@@ -25,7 +25,7 @@ export class AddPaymentMethodComponent implements OnInit {
   errorMessage = '';
   successMessage = '';
 
-  @Output() addOnSuccess = new EventEmitter<string>();
+  @Output() addOnSuccess = new EventEmitter<number>();
   @Output() addOnFailure = new EventEmitter<string>();
   @Output() closeModal = new EventEmitter<void>();
 
@@ -134,7 +134,7 @@ export class AddPaymentMethodComponent implements OnInit {
       next: (response) => {
         console.log('[PAGO] Método registrado exitosamente:', response);
         this.successMessage = 'Método de pago agregado exitosamente';
-        this.onSuccess(this.successMessage);
+        this.onSuccess(response.id);
       },
       error: (error) => {
         console.error('[PAGO] Error al registrar el método de pago:', error);
@@ -155,11 +155,10 @@ export class AddPaymentMethodComponent implements OnInit {
     this.initializeStripe();
   }
 
-  onSuccess(message: string) {
-    this.successMessage = message;
-    console.log('[SUCCESS] Éxito:', message);
-    this.addOnSuccess.emit(message);
-    // Limpiar después del éxito
+  onSuccess(id : number) {
+   this.successMessage = 'Método de pago agregado exitosamente';
+    this.addOnSuccess.emit(id);
+
     setTimeout(() => {
       this.clearCard();
       this.closeModal.emit();
