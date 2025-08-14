@@ -1,4 +1,4 @@
-import { Component, Input , Output, EventEmitter} from '@angular/core';
+import { Component, Input , Output, EventEmitter, input} from '@angular/core';
 import { Membership } from '../../../interfaces/membership';
 import { CommonModule } from '@angular/common';
 @Component({
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 export class MembershipCardsComponent {
 @Input() membership!: Membership
  @Input() buttonText: string = 'Seleccionar' 
-
+  @Input() showButton: boolean = true;
  @Output() onSelect = new EventEmitter<Membership>()
 
 

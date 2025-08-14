@@ -4,6 +4,6 @@
       <span class="header-title">Membresías Disponibles</span>
    </div>
    <div class="membership-list">
-      <app-membership-cards *ngFor="let membership of memberships" [membership]="membership" (onSelect)="selectMembership($event)" [buttonText]="'Suscribirse'"></app-membership-cards>
+      <app-membership-cards  *ngFor="let membership of memberships" [membership]="membership" (onSelect)="selectMembership($event)" [showButton]="showButton" [buttonText]="'Suscribirse'"></app-membership-cards>
    </div>
 </div>

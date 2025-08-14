@@ -7,6 +7,6 @@
   </div>
 
   <div class="button-group">
-    <button class="main-button" (click)="handleSelect()">{{ buttonText }}</button>
+    <button *ngIf="showButton" class="main-button" (click)="handleSelect()">{{ buttonText }}</button>
   </div>
 </div>
