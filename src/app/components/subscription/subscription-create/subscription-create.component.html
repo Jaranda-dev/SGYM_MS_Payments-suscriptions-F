@@ -2,49 +2,39 @@
   <h2>Crear Suscripción</h2>
 
   <form [formGroup]="form" (ngSubmit)="submit()">
-    <div class="form-group">
-      <label for="userId">ID de Usuario</label>
-      <input id="userId" formControlName="userId" type="number" placeholder="ID de Usuario" />
-      <div *ngIf="form.get('userId')?.invalid && form.get('userId')?.touched" class="error">
-        ID de Usuario requerido y mínimo 1
-      </div>
-    </div>
 
     <div class="form-group">
-      <label for="membershipId">ID de Membresía</label>
-      <input id="membershipId" formControlName="membershipId" type="number" placeholder="ID de Membresía" />
-      <div *ngIf="form.get('membershipId')?.invalid && form.get('membershipId')?.touched" class="error">
-        ID de Membresía requerido y mínimo 1
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="startDate">Fecha de Inicio</label>
-      <input id="startDate" formControlName="startDate" type="date" placeholder="Fecha de Inicio" />
-      <div *ngIf="form.get('startDate')?.invalid && form.get('startDate')?.touched" class="error">
-        Fecha de Inicio requerida
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="endDate">Fecha de Fin</label>
-      <input id="endDate" formControlName="endDate" type="date" placeholder="Fecha de Fin" />
-      <div *ngIf="form.get('endDate')?.invalid && form.get('endDate')?.touched" class="error">
-        Fecha de Fin requerida
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="status">Estado</label>
-      <select id="status" formControlName="status">
-        <option value="active">Activo</option>
-        <option value="cancelled">Cancelado</option>
-        <option value="expired">Expirado</option>
+      <label for="userId">Usuario</label>
+      <select id="userId" formControlName="userId">
+        <option value="" disabled>Seleccione un usuario</option>
+        <option *ngFor="let user of users" [value]="user.id">{{ user.email }}</option>
       </select>
-      <div *ngIf="form.get('status')?.invalid && form.get('status')?.touched" class="error">
-        Estado requerido
+      <div *ngIf="form.get('userId')?.invalid && form.get('userId')?.touched" class="error">
+        Usuario requerido
       </div>
     </div>
 
+ <div class="form-group">
+      <label for="membershipId">Membresía</label>
+      <select id="membershipId" formControlName="membershipId">
+        <option value="" disabled>Seleccione una membresía</option>
+        <option *ngFor="let membership of memberships" [value]="membership.id">{{ membership.name }}</option>
+      </select>
+      <div *ngIf="form.get('membershipId')?.invalid && form.get('membershipId')?.touched" class="error">
+        Membresía requerida
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="paymentMethodId">Método de Pago</label>
+      <select id="paymentMethodId" formControlName="paymentMethodId">
+        <option value="" disabled>Seleccione un método de pago</option>
+        <option *ngFor="let paymentMethod of paymentMethods" [value]="paymentMethod.id">{{ paymentMethod.name }}</option>
+      </select>
+      <div *ngIf="form.get('paymentMethodId')?.invalid && form.get('paymentMethodId')?.touched" class="error">
+        Método de pago requerido
+      </div>
+    </div>
 
     <div class="form-buttons">
       <button type="button" class="btn-cancel" (click)="handleCancel()">Cancelar</button>

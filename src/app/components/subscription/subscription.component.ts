@@ -23,7 +23,7 @@ import { MessageCardComponent } from '../resources/message-card/message-card.com
 export class SubscriptionComponent implements OnInit {
   subscriptions: Subscription[] = []
   headers = ['Usuario', 'Membresía', 'Fecha de Inicio', 'Fecha de Fin', 'Estado']
-  keys = ['userId', 'membershipId', 'startDate', 'endDate', 'status']
+  keys = ['user.email', 'membership.name', 'startDate', 'endDate', 'status']
   errorMessage = ''
   showCreate = false
   showEdit = false

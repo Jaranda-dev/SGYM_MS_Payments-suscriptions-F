@@ -106,6 +106,49 @@ button:disabled:hover {
   box-shadow: none;
 }
 
+/* === Estilo para el checkbox === */
+.form-group-2 input[type="checkbox"] {
+  /* Ocultamos el checkbox original */
+  display: none;
+}
+
+.form-group-2 label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.6vw;
+}
+
+.form-group-2 label::before {
+  content: '';
+  display: inline-block;
+  width: 1.2vw;
+  height: 1.2vw;
+  min-width: 18px;
+  min-height: 18px;
+  border: 0.15vh solid #7710d4;
+  border-radius: 0.3vw;
+  background-color: #fff;
+  transition: all 0.2s ease;
+}
+
+.form-group-2 input[type="checkbox"]:checked + label::before {
+  background-color: #7710d4;
+  border-color: #7710d4;
+  box-shadow: 0 0.2vh 0.5vh rgba(119, 16, 212, 0.3);
+}
+
+.form-group-2 input[type="checkbox"]:checked + label::after {
+  content: '✔';
+  position: absolute;
+  color: white;
+  font-size: 0.8rem;
+  margin-left: 0.25vw;
+  margin-top: -0.05vw;
+}
+
+
+
 /* === Responsive === */
 @media (max-width: 768px) {
   .modal-form {

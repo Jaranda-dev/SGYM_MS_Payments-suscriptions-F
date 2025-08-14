@@ -2,14 +2,26 @@
 
 
 
-<app-data-table
-  [headers]="headers"
-  [keys]="keys"
-  [data]="payments"
-  (onEdit)="onEdit($event)"
-  (onDelete)="onDelete($event)"
-  (onCreate)="onCreate()"
-></app-data-table>
+
+
+<div class="table-wrapper">
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th *ngFor="let header of headers">{{ header }}</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of payments">
+       <td *ngFor="let key of keys">{{ getValue(item, key) }}</td>
+
+     
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 
 <!-- Overlay modal -->
 <div *ngIf="showCreate" class="modal-overlay">

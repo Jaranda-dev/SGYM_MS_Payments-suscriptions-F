@@ -11,3 +11,146 @@
   z-index: 1000; /* Asegura que quede encima */
 }
 
+.table-wrapper {
+  background-color: #f3f2ff;
+  border: 0.15vw solid #7a5af8;
+  border-radius: 0.7vw;
+  overflow-y: auto;
+  margin-top: 1rem;
+  height: 60vh;
+}
+
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  
+}
+
+/* === Header de la tabla === */
+.table-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+/* === Botón crear === */
+.btn-create {
+  background-color: #7710d4;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 1.2vw; /* Valor relativo más redondo */
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-create:hover {
+  background-color: #5a0ca0;
+}
+
+/* === Encabezados === */
+.custom-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f3f2ff; /* fondo fijo */
+  color: #673ab7;
+  font-weight: bold;
+  padding: 1.4vh 1vw;    /* más espacio arriba/abajo y lados */
+  font-size: 1.1rem;    /* tamaño de fuente mayor */
+  text-align: left;
+  border-bottom: 0.1vh solid #9c27b0;
+  z-index: 2;
+}
+
+
+/* === Filas del cuerpo === */
+.custom-table tbody tr {
+  border-bottom: 0.1vh solid #9c27b0;
+  transition: background-color 0.2s ease;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #f8f5ff;
+}
+
+/* === Celdas === */
+.custom-table tbody td {
+  padding: 0.5vh 0.5vw;
+  color: #333;
+}
+
+/* === Columna de acciones === */
+.custom-table tbody td:last-child {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* === Botones de acción === */
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25vw;
+  transition: all 0.2s ease;
+  font-size: 1.1rem;
+}
+
+.edit-button {
+  color: #7710d4;
+}
+
+.edit-button:hover {
+  background-color: #f3f2ff;
+  transform: scale(1.1);
+}
+
+.delete-button {
+  color: #d32f2f;
+}
+
+.delete-button:hover {
+  background-color: #ffebee;
+  transform: scale(1.1);
+}
+
+.view-button {
+  color: #1976d2;
+}
+
+.view-button:hover {
+  background-color: #e3f2fd;
+  transform: scale(1.1);
+}
+
+/* === Estado vacío === */
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .custom-table {
+    font-size: 0.875rem;
+  }
+  
+  .custom-table thead th,
+  .custom-table tbody td {
+    padding: 0.4vh 0.3vw;
+  }
+  
+  .icon-button {
+    font-size: 1rem;
+  }
+}

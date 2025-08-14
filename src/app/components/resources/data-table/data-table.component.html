@@ -12,7 +12,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of data">
-        <td *ngFor="let key of keys">{{ item[key] }}</td>
+       <td *ngFor="let key of keys">{{ getValue(item, key) }}</td>
+
         <td>
           <button class="icon-button edit-button" (click)="handleEdit(item)">
             ✏️

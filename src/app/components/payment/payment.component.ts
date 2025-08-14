@@ -14,15 +14,15 @@ import { MessageCardComponent } from '../resources/message-card/message-card.com
 
 @Component({
   selector: 'app-payment',
-  imports: [CommonModule, ReactiveFormsModule, DataTableComponent, PaymentCreateComponent, PaymentEditComponent, MessageToastComponent, MessageCardComponent],
+  imports: [CommonModule, ReactiveFormsModule, PaymentCreateComponent, PaymentEditComponent, MessageToastComponent, MessageCardComponent],
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css'
 })
 export class PaymentComponent implements OnInit {
   payments: Payment[] = []
 
-  headers = ['ID', 'Payment Request ID', 'Subscription ID', 'Amount', 'Payment Date', 'Concept', 'Status', 'Created At']
-  keys = ['id', 'paymentRequestId', 'subscriptionId', 'amount', 'paymentDate', 'concept', 'status', 'createdAt']
+  headers = ['ID','Usuario', 'Subscription ID', 'Amount', 'Payment Date', 'Concept', 'Status', 'Created At']
+  keys = ['id','paymentRequest.user.email', 'subscription.membership.name', 'amount', 'paymentDate', 'concept', 'status', 'createdAt']
   errorMessage = ''
   showCreate = false
   showEdit = false
@@ -49,9 +49,13 @@ export class PaymentComponent implements OnInit {
     this.showEdit = false
    
     this.paymentService.getAll().subscribe({
-      next: data => (this.payments = data),
+      next: data => {
+        this.payments = data
+        console.log(this.payments);
+      },
       error: err => (this.errorMessage = err.message || 'Error al cargar pagos')
     })
+
   }
 
       onDelete(item: Payment) {
@@ -110,6 +114,11 @@ export class PaymentComponent implements OnInit {
       this.errorMessage = message
       setTimeout(() => (this.errorMessage = ''), 2000)
     }
+
+    getValue(item: any, path: string) {
+  return path.split('.').reduce((obj, key) => obj?.[key], item) ?? '';
+}
+
 }
 
  

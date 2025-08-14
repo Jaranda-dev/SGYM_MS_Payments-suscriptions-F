@@ -9,6 +9,36 @@
   box-shadow: 0 0.6vh 1.5vh rgba(0, 0, 0, 0.1);
 }
 
+.modal-form select {
+  width: 100%;
+  padding: 0.8vh 1vw;
+  border: 0.1vh solid #c0c0c0;
+  border-radius: 0.4vw;
+  background-color: #f2f2fe;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  appearance: none; /* Quita estilos por defecto del navegador */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg fill='%237710d4' height='24' viewBox='0 0 24 24' width='24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.8vw center;
+  background-size: 1.2em;
+}
+
+.modal-form select:focus {
+  border-color: #7710d4;
+  outline: none;
+  box-shadow: 0 0 0 0.15vh rgba(119, 16, 212, 0.2);
+}
+
+.modal-form option {
+  background-color: #ffffff;
+  color: #3b3b3b;
+}
+
+
 .modal-form h2 {
   text-align: center;
   color: #3b3b3b;
@@ -123,3 +153,6 @@ button:disabled:hover {
     padding: 1vh 2vw;
   }
 }
+
+
+

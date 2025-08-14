@@ -28,7 +28,7 @@ export class MembershipCreateComponent {
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(50)]],
       durationDays: [30, [Validators.required, Validators.min(1)]],
-      price: [0, [Validators.required, Validators.min(0)]]
+      price: [1, [Validators.required, Validators.min(1)]]
     })
   }
 
@@ -37,7 +37,14 @@ export class MembershipCreateComponent {
 
     this.membershipService.create(this.form.value).subscribe({
       next: () => this.handleCreate('Membresía creada con éxito'),
-      error: () => this.handleError('Error creando membresía')
+      error: (error) => {
+        if(error.error.data.error == 'ErrorDuplicado.' ) {
+          this.handleError('Error: La membresía ya existe')
+        }
+        else {
+          this.handleError('Error al crear la membresía')
+        }
+      }
     })
   }
 

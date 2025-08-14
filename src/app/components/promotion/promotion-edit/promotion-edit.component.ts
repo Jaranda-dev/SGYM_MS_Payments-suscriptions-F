@@ -5,6 +5,9 @@ import { Router } from '@angular/router'
 import { MembershipService } from '../../../services/membership/membership.service';
 import { CommonModule } from '@angular/common';
 import { Promotion } from '../../../interfaces/promotion';
+import { Membership } from '../../../interfaces/membership';
+import { PromotionService } from '../../../services/promotion/promotion.service';
+
 
 
 
@@ -18,6 +21,7 @@ import { Promotion } from '../../../interfaces/promotion';
 export class PromotionEditComponent {
   form: FormGroup
   errorMessage = ''
+    memberships: Membership[] = []
  
 
   @Input() promotion !: Promotion
@@ -30,20 +34,21 @@ export class PromotionEditComponent {
   constructor(
     private fb: FormBuilder,
     private membershipService: MembershipService,
-    private router: Router
+    private router: Router,
+    private promotionService: PromotionService
+
   ) {
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(50)]],
       discount: [0, [Validators.required, Validators.min(0), Validators.max(100)]],
-      startDate: [null, [Validators.required]],
-      endDate: [null, [Validators.required]]
+      membershipId: [null, [Validators.required]]
     })
 }
 
   submit() {
     if (this.form.invalid) return
 
-    this.membershipService.update(this.promotion.id, this.form.value).subscribe({
+    this.promotionService.update(this.promotion.id, this.form.value).subscribe({
       next: () => this.handleEdit('Promoción editada con éxito'),
       error: () => this.handleError('Error editando promoción')
     })
@@ -66,10 +71,25 @@ export class PromotionEditComponent {
       this.form.patchValue({
         name: this.promotion.name,
         discount: this.promotion.discount,
-        startDate: this.promotion.startDate,
-        endDate: this.promotion.endDate
+        membershipId: this.promotion.membershipId
       })
     }
   }
+
+     loadMemberships() {
+
+    this.membershipService.getAll().subscribe({
+      next: (data) => {
+        console.log(data);
+        this.memberships = data;
+      },
+      error: (err) => (this.errorMessage = err.message || 'Error al cargar membresías')
+    })
+  }
+
+  ngOnInit() {
+    this.loadMemberships()
+  }
+
 
 } 

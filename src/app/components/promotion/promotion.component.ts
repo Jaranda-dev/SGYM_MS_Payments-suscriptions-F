@@ -19,8 +19,8 @@ import { MessageCardComponent } from '../resources/message-card/message-card.com
 
 export class PromotionComponent  implements OnInit {
   promotions: Promotion[] = []
-  headers = ['Nombre', 'Descuento', 'Fecha de Inicio', 'Fecha de Fin']
-  keys = ['name', 'discount', 'startDate', 'endDate']
+  headers = ['Nombre', 'Descuento', 'Membresía']
+  keys = ['name', 'discount', 'membership.name']
   errorMessage = ''
   showCreate = false
   showEdit = false

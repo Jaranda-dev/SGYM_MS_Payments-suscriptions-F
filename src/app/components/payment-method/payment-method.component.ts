@@ -29,8 +29,8 @@ import { MessageCardComponent } from '../resources/message-card/message-card.com
 })
 export class PaymentMethodComponent implements OnInit {
   payments: PaymentMethod[] = [];
-  headers = ['ID', 'Nombre'];
-  keys = ['id', 'name'];
+  headers = ['ID', 'Nombre' ,'Descripción' , 'Activo' ];
+  keys = ['id', 'name', 'description', 'isActive'];
 
   errorMessage = '';
   successMessage = '';

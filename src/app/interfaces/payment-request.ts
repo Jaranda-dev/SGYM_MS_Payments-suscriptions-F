@@ -12,6 +12,8 @@ export interface PaymentRequest {
   updatedAt: string
   paymentMethod?: PaymentMethod
   payments?: Payment[]
+  user?: User
 }
 import { PaymentMethod } from './payment-method'
 import { Payment } from './payment'
+import { User } from './user'

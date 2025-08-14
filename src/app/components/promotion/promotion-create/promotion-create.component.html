@@ -21,17 +21,13 @@
     </div>
 
     <div class="form-group">
-      <label for="startDate">Fecha de Inicio</label>
-      <input id="startDate" formControlName="startDate" type="date" />
-      <div *ngIf="form.get('startDate')?.invalid && form.get('startDate')?.touched" class="error">
-        Fecha de inicio requerida
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="endDate">Fecha de Fin</label>
-      <input id="endDate" formControlName="endDate" type="date" />
-      <div *ngIf="form.get('endDate')?.invalid && form.get('endDate')?.touched" class="error">
-        Fecha de fin requerida
+      <label for="membershipId">Membresía</label>
+      <select id="membershipId" formControlName="membershipId">
+        <option value="" disabled>Seleccione una membresía</option>
+        <option *ngFor="let membership of memberships" [value]="membership.id">{{ membership.name }}</option>
+      </select>
+      <div *ngIf="form.get('membershipId')?.invalid && form.get('membershipId')?.touched" class="error">
+        Membresía requerida
       </div>
 
     <div class="form-buttons">

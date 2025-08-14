@@ -31,5 +31,8 @@ export class DataTableComponent {
 //   // Implement view logic if needed
 //   // console.log('View item:', item)
 // }
+getValue(item: any, path: string) {
+  return path.split('.').reduce((obj, key) => obj?.[key], item) ?? '';
+}
 
 }

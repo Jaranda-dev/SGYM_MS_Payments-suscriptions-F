@@ -33,7 +33,7 @@ export class SubscriptionService {
       })
     );
   }
-  create(subscription: Partial<Subscription>): Observable<Subscription> {
+  create(subscription: any): Observable<Subscription> {
     return this.http.post<ApiResponse<Subscription>>(this.baseUrl, subscription).pipe(
       map(response => {
         if (response.status === 'success') {
