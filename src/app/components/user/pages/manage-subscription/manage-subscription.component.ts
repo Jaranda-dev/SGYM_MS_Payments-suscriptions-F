@@ -63,6 +63,7 @@ export class ManageSubscriptionComponent {
     if (this.promotions.length > 0) {
       this.setView({ promotions: true }, 'Seleccionar Promoción');
     } else {
+      this.getDefaultPaymentMethod();
       this.setView({ paymentMethods: true }, 'Seleccionar Método de Pago');
     }
   }
@@ -83,9 +84,11 @@ export class ManageSubscriptionComponent {
 
   handleChangePromotion() {
     this.setView({ promotions: true }, 'Seleccionar Promoción');
+    
   }
 
   handlePaymentMethodSelected() {
+    this.getDefaultPaymentMethod();
     this.setView({ subscribe: true } , '');
   }
 
@@ -112,6 +115,10 @@ handleChangeRenewal(event: boolean) {
 
 }
   
+handlePaymentMethodCreated(){
+  this.getDefaultPaymentMethod();
+}
+
 
    async  getPromotionByMembershipId(membershipId: number) {
     this.promotionService.getPromotionByMembershipId(membershipId).subscribe({

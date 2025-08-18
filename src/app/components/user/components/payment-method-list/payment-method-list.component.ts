@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { UserPaymentMethodService } from '../../../../services/user-payment-method/user-payment-method.service';
 import { UserPaymentMethod } from '../../../../interfaces/user-payment-method';
 import { CommonModule } from '@angular/common';
@@ -10,8 +10,9 @@ import { MessageToastComponent } from '../../../resources/message-toast/message-
   templateUrl: './payment-method-list.component.html',
   styleUrls: ['./payment-method-list.component.css']
 })
-export class PaymentMethodListComponent{
+export class PaymentMethodListComponent {
   @Output() paymentMethodSelected = new EventEmitter<void>();
+  @Output() paymentMethodCreated = new EventEmitter<void>();
   constructor(private userPaymentMethodService: UserPaymentMethodService) { }
   userPaymentMethod: UserPaymentMethod[] = [];
   showCreate: boolean = false;
@@ -20,6 +21,7 @@ export class PaymentMethodListComponent{
   successMessage = '';
   ngOnInit() {
     this.loadPaymentHistory();
+    
   }
 
   loadPaymentHistory() {
@@ -78,8 +80,8 @@ export class PaymentMethodListComponent{
     setTimeout(() => (this.successMessage = ''), 2000);
     this.loadPaymentHistory();
     this.closeCreate();
-    this.paymentMethodSelected.emit();
-   
+    this.paymentMethodCreated.emit();
+
   }
   onAddFailure(message: string) {
     console.log('Fallo al agregar método de pago:', message);
@@ -91,5 +93,7 @@ export class PaymentMethodListComponent{
   handlePaymentMethodSelected() {
     this.paymentMethodSelected.emit();
   }
+
+ 
 
 }

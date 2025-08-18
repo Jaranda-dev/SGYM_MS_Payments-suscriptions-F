@@ -48,7 +48,7 @@
 
   <!-- Métodos de Pago -->
   <section *ngIf="view.paymentMethods" class="payment-method-section">
-    <app-payment-method-list (paymentMethodSelected)="handlePaymentMethodSelected()"></app-payment-method-list>
+    <app-payment-method-list (paymentMethodSelected)="handlePaymentMethodSelected()" (paymentMethodCreated)="handlePaymentMethodCreated()"></app-payment-method-list>
   </section>
 
 </div>
